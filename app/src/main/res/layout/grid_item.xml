@@ -10,6 +10,7 @@
 
 
     <LinearLayout
+        android:id="@+id/item_back_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@drawable/book"

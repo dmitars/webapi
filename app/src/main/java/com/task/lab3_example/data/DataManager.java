@@ -2,6 +2,8 @@ package com.task.lab3_example.data;
 
 import android.provider.ContactsContract;
 
+import androidx.annotation.NonNull;
+
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,25 +16,27 @@ public class DataManager extends WebManager{
     public static Book selectedBook;
     BookApi bookApi;
     BookCallProcessor processor;
+    BooksInterface booksInterface;
 
     private static DataManager instance;
 
-    private DataManager(){
+    private DataManager(BooksInterface booksInterface){
         super();
+        this.booksInterface = booksInterface;
         bookApi = retrofit.create(BookApi.class);
         processor = new BookCallProcessor();
     }
 
-    public static DataManager getInstance(){
+    public static DataManager getInstance(BooksInterface booksInterface){
         if(instance == null)
-            instance = new DataManager();
+            instance = new DataManager(booksInterface);
         return instance;
     }
 
     public void addBook(Book book){
         bookApi.addBook(book).enqueue(new Callback<Book>() {
             @Override
-            public void onResponse(Call<Book> call, Response<Book> response) {
+            public void onResponse(@NonNull Call<Book> call, @NonNull Response<Book> response) {
                 //books.addAll(response.body());
                 System.out.println(response.body().toString());
             }
@@ -44,22 +48,22 @@ public class DataManager extends WebManager{
         });
     }
 
-    public List<Book>loadBooks(){
-        List<Book>books = new ArrayList<>();
-
-        bookApi.getBooks().enqueue(new Callback<List<Book>>() {
+    public void loadBooks(){
+        Call<List<Book>> callBooks = bookApi.getBooks();
+        callBooks.enqueue(new Callback<List<Book>>() {
             @Override
-            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                System.out.println(response.body());
-                books.addAll(response.body());
+            public void onResponse(@NonNull Call<List<Book>> call, @NonNull Response<List<Book>> response) {
+                List<Book>books = response.body();
+                if(books == null)
+                    books = new ArrayList<>();
+                booksInterface.showBooks(books);
             }
 
             @Override
             public void onFailure(Call<List<Book>> call, Throwable t) {
-                System.out.println("something");
+                t.printStackTrace();
             }
         });
-        return books.size() == 0?null:books;
     }
 
     public String updateBook(Book book){

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.task.lab3_example.R;
@@ -35,6 +36,9 @@ public class BookGridAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
+        Book book = books.get(i);
+        if(book.getTitle() == null)
+            return null;
         return books.get(i);
     }
 
@@ -51,12 +55,15 @@ public class BookGridAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.titleView = convertView.findViewById(R.id.tvBookTitle);
             holder.authorView = convertView.findViewById(R.id.tvBookAuthor);
+            holder.layout = convertView.findViewById(R.id.item_back_layout);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         Book book = books.get(position);
+        if(book.getTitle() == null)
+            holder.layout.setVisibility(View.INVISIBLE);
         holder.titleView.setText(book.getTitle());
         holder.authorView.setText(book.getAuthor());
 
@@ -78,7 +85,7 @@ public class BookGridAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        //ImageView flagView;
+        LinearLayout layout;
         TextView titleView;
         TextView authorView;
     }

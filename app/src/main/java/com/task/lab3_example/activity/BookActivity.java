@@ -44,7 +44,7 @@ public class BookActivity extends AppCompatActivity {
         etAuthor.setText(DataManager.selectedBook.getAuthor());
         etDescription.setText(DataManager.selectedBook.getDescription());
 
-        dataManager = DataManager.getInstance();
+        dataManager = DataManager.getInstance(null);
     }
 
     private void updateBook() {

@@ -24,15 +24,16 @@ import com.task.lab3_example.activity.MainActivity;
 import com.task.lab3_example.R;
 import com.task.lab3_example.adapters.BookGridAdapter;
 import com.task.lab3_example.data.Book;
+import com.task.lab3_example.data.BooksInterface;
 import com.task.lab3_example.data.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainTab extends Fragment {
+public class MainTab extends Fragment implements BooksInterface {
     private final MainActivity mainContext;
     Button btnAdd;
-    private List<Book>books;
+    private List<Book>books = new ArrayList<>();
     private GridView gridView;
     private DataManager dataManager;
 
@@ -48,8 +49,8 @@ public class MainTab extends Fragment {
 
         btnAdd.setOnClickListener(view->addBook());
 
-        dataManager = DataManager.getInstance();
-        books = dataManager.loadBooks();
+        dataManager = DataManager.getInstance(this::showBooks);
+        dataManager.loadBooks();
         //books = getListData();
         gridView = root.findViewById(R.id.gridView);
         gridView.setAdapter(new BookGridAdapter(mainContext, books));
@@ -57,6 +58,8 @@ public class MainTab extends Fragment {
         // When the user clicks on the GridItem
         gridView.setOnItemClickListener((a, v, position, id) -> {
             Object o = gridView.getItemAtPosition(position);
+            if(o == null)
+                return;
             DataManager.selectedBook = (Book) o;
             Intent intent = new Intent(mainContext, BookActivity.class);
             startActivity(intent);
@@ -64,9 +67,20 @@ public class MainTab extends Fragment {
         return root;
     }
 
-    private void updateBooks(){
-        //books = dataManager.loadBooks();
+    public void showBooks(List<Book>books){
+        if(books.size()%2!=0) {
+            try {
+                books.add(new Book(null,"     ","     "));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        this.books = books;
         gridView.setAdapter(new BookGridAdapter(mainContext, books));
+    }
+
+    private void updateBooks(){
+        dataManager.loadBooks();
     }
 
 

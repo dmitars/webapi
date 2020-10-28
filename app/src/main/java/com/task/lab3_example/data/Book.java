@@ -1,19 +1,26 @@
 package com.task.lab3_example.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class Book {
+    @SerializedName("id")
     long id;
 
+    @SerializedName("author")
     String author;
+
+    @SerializedName("title")
     String title;
+
+    @SerializedName("description")
     String description;
 
     public Book(String title,String author, String description)throws Exception{
-        Objects.requireNonNull(title,"incorrect title");
         Objects.requireNonNull(author,"incorrect author");
         Objects.requireNonNull(description,"incorrect description");
-        if(title.isEmpty() || author.isEmpty() || description.isEmpty())
+        if((title!=null && title.isEmpty()) || author.isEmpty() || description.isEmpty())
             throw new Exception("field cannot be empty");
         this.title = title;
         this.author = author;
