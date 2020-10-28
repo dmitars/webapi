@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/caramel"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            app:srcCompat="@drawable/opened_book" />
+
+        <TextView
+            android:id="@+id/tvLabelTitle"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="38dp"
+            android:layout_marginStart="45dp"
+            android:textSize="26sp"
+            android:textColor="@color/brown"
+            android:textAlignment="center"
+            android:fontFamily="@font/calligraph"
+            android:text="@string/title" />
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="150dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="top|start"
+            android:background="@drawable/transparent_rect_shape"
+            android:ems="10"
+            android:textSize="24sp"
+            android:inputType="textMultiLine"
+            android:fontFamily="@font/andantino"
+            android:padding="15dp" />
+
+        <TextView
+            android:id="@+id/tvLabelAuthor"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="38dp"
+            android:textSize="26sp"
+            android:layout_marginEnd="45dp"
+            android:textColor="@color/brown"
+            android:fontFamily="@font/calligraph"
+            android:textAlignment="center"
+            android:text="@string/author" />
+
+        <EditText
+            android:id="@+id/etAuthor"
+            android:layout_width="150dp"
+            android:layout_height="195dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="top|start"
+            android:background="@drawable/transparent_rect_shape"
+            android:ems="10"
+            android:textSize="24sp"
+            android:fontFamily="@font/andantino"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+    </FrameLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/frame"
+    android:layout_above="@id/linearLayout">
+    <LinearLayout
+        android:id="@+id/mainLinearHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/tvLabelDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textColor="@color/brown"
+            android:textSize="20sp"
+            android:text="@string/description" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            style="@style/goldBorderRect"
+            android:background="@drawable/gold_rect_shape"
+            android:fontFamily="@font/andantino"
+            android:textSize="20sp"
+            android:minLines="7"
+            android:text=""
+            android:gravity="top|start"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+
+    </LinearLayout>
+</ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:gravity="bottom|center_horizontal"
+        android:background="@color/light_caramel"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/btnRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_margin="3dp"
+            android:text="@string/removeButtonText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnOrder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnOrder" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="3dp"
+            android:text="@string/updateButtonText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnOrder"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="20dp"
+            android:layout_margin="3dp"
+            android:text="@string/orderButtonText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnUpdate"
+            app:layout_constraintEnd_toStartOf="@+id/btnRemove" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

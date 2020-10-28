@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Lab3_example" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/brown</item>
+        <item name="colorPrimaryVariant">@color/light_caramel</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Lab3_example.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="borderRect">
+        <item name="android:background">@drawable/border_rect</item>
+    </style>
+
+    <style name="goldBorderRect">
+        <item name="android:drawable">@drawable/gold_rect_shape</item>
+    </style>
+
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/brown</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/gold_rect_shape</item>
+    </style>
+
+    <style name="Theme.Lab3_example.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Lab3_example.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

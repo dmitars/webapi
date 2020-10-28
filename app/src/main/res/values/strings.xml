@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Система заказа книг</string>
+    <string name="tab_text_1">Сервис</string>
+    <string name="tab_text_2">Оплата</string>
+    <string name="addButtonText">Добавить</string>
+    <string name="payButtonText">Оплатить</string>
+    <string name="updateButtonText">ОК</string>
+    <string name="orderButtonText">Заказать</string>
+    <string name="removeButtonText">Удалить</string>
+    <string name="functionLabelText">Выберите функцию</string>
+    <string name="title">Название</string>
+    <string name="author">Автор</string>
+    <string name="description">Описание</string>
+    <string name="paymentException">Ошибка оплаты; попробуйте позже</string>
+    <string name="startDate">Оплатить с (dd.mm.yyyy)</string>
+    <string name="endDate">Оплатить по (dd.mm.yyyy)</string>
+    <string-array name="functions">
+        <item>Заказать</item>
+        <item>Добавить</item>
+        <item>Редактировать</item>
+        <item>Удалить</item>
+    </string-array>
+</resources>
