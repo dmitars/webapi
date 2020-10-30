@@ -14,6 +14,7 @@
     <string name="paymentException">Ошибка оплаты; попробуйте позже</string>
     <string name="startDate">Оплатить с (dd.mm.yyyy)</string>
     <string name="endDate">Оплатить по (dd.mm.yyyy)</string>
+    <string name="standardText">     </string>
     <string-array name="functions">
         <item>Заказать</item>
         <item>Добавить</item>

@@ -15,9 +15,9 @@ import com.task.lab3_example.data.Book;
 import java.util.List;
 
 public class BookGridAdapter extends BaseAdapter {
-    private Context context;
-    private List<Book>books;
-    private LayoutInflater layoutInflater;
+    private final Context context;
+    private final List<Book>books;
+    private final LayoutInflater layoutInflater;
 
     public BookGridAdapter(Context context, List<Book> books){
         this.context = context;
@@ -36,9 +36,6 @@ public class BookGridAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        Book book = books.get(i);
-        if(book.getTitle() == null)
-            return null;
         return books.get(i);
     }
 
@@ -62,8 +59,10 @@ public class BookGridAdapter extends BaseAdapter {
         }
 
         Book book = books.get(position);
-        if(book.getTitle() == null)
+        if(book == null) {
             holder.layout.setVisibility(View.INVISIBLE);
+            return convertView;
+        }
         holder.titleView.setText(book.getTitle());
         holder.authorView.setText(book.getAuthor());
 

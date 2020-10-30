@@ -49,11 +49,13 @@ public class MainTab extends Fragment implements BooksInterface {
 
         btnAdd.setOnClickListener(view->addBook());
 
-        dataManager = DataManager.getInstance(this::showBooks);
+        dataManager = DataManager.getInstance(this);
         dataManager.loadBooks();
         //books = getListData();
+
         gridView = root.findViewById(R.id.gridView);
-        gridView.setAdapter(new BookGridAdapter(mainContext, books));
+        //showBooks(books);
+        //gridView.setAdapter(new BookGridAdapter(mainContext, books));
 
         // When the user clicks on the GridItem
         gridView.setOnItemClickListener((a, v, position, id) -> {
@@ -70,7 +72,7 @@ public class MainTab extends Fragment implements BooksInterface {
     public void showBooks(List<Book>books){
         if(books.size()%2!=0) {
             try {
-                books.add(new Book(null,"     ","     "));
+                books.add(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -131,7 +133,7 @@ public class MainTab extends Fragment implements BooksInterface {
 
     private List<Book>getListData(){
         List<Book>books = new ArrayList<>();
-        for(int i = 0;i<20;i++) {
+        for(int i = 0;i<5;i++) {
             try {
                 books.add(new Book("title"+i,"author"+i,"description"+i));
             } catch (Exception e) {

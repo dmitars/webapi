@@ -18,9 +18,10 @@ public class Book {
     String description;
 
     public Book(String title,String author, String description)throws Exception{
+        Objects.requireNonNull(title,"incorrect title");
         Objects.requireNonNull(author,"incorrect author");
         Objects.requireNonNull(description,"incorrect description");
-        if((title!=null && title.isEmpty()) || author.isEmpty() || description.isEmpty())
+        if(title.isEmpty() || author.isEmpty() || description.isEmpty())
             throw new Exception("field cannot be empty");
         this.title = title;
         this.author = author;
