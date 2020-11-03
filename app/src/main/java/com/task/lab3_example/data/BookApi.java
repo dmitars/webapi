@@ -4,8 +4,10 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface BookApi {
     @GET("books")
@@ -17,8 +19,8 @@ public interface BookApi {
     @POST("updateBook")
     Call<Book> updateBook(@Body Book data);
 
-    @POST("removeBook")
-    Call<Book> removeBook(@Body Book data);
+    @DELETE("removeBook")
+    Call<Book> removeBook(@Query("id") long id);
 
     @POST("orderBook")
     Call<Book> orderBook(@Body Book data);

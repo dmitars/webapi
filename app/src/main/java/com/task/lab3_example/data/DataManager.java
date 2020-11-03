@@ -73,7 +73,7 @@ public class DataManager extends WebManager{
     }
 
     public String removeBook(){
-        bookApi.removeBook(selectedBook).enqueue(processor);
+        bookApi.removeBook(selectedBook.getId()).enqueue(processor);
         return processor.getAnswer();
     }
 
