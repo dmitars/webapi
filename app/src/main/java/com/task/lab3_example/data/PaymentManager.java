@@ -8,29 +8,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PaymentManager extends WebManager{
+public class PaymentManager extends WebManager {
     PaymentApi paymentApi;
     String answer;
     private static PaymentManager instance;
     //private Context mainContext;
-    private SharedPreferences sharedPreferences;
-    
-    private PaymentManager(){
+
+    private PaymentManager() {
         super();
-        // this.mainContext = context;
-       // sharedPreferences = mainContext.getSharedPreferences("tokens",Context.MODE_PRIVATE);
         paymentApi = retrofit.create(PaymentApi.class);
     }
 
-    public static PaymentManager getInstance(){
-        if(instance == null)
+    public static PaymentManager getInstance() {
+        if (instance == null)
             instance = new PaymentManager();
         return instance;
     }
 
-    public String sentPayment(String startDate,String endDate, String functionName){
+    public String sentPayment(String startDate, String endDate, String functionName) {
 
-        paymentApi.sentPayment(startDate,endDate,functionName).enqueue(new Callback<String>() {
+        paymentApi.sentPayment(startDate, endDate, functionName).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 //Strings.addAll(response.body());

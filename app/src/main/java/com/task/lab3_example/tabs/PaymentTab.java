@@ -1,6 +1,7 @@
 package com.task.lab3_example.tabs;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,10 @@ public class PaymentTab extends Fragment {
             if(endDate.before(startDate) && endDate.getTime()!=startDate.getTime())
                 throw new Exception("Некорректный промежуток времени!");
             String answer = paymentManager.sentPayment(dateStart,dateEnd,spinner.getSelectedItem().toString());
+            SharedPreferences sharedPreferences = mainContext.getSharedPreferences("token",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("token",answer);
+            editor.apply();
             Toast.makeText(mainContext,answer,Toast.LENGTH_SHORT).show();
             Toast.makeText(mainContext,"date is correct!",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {

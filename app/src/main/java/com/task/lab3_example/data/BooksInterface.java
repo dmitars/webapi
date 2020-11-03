@@ -4,4 +4,7 @@ import java.util.List;
 
 public interface BooksInterface {
     void showBooks(List<Book> books);
+
+    void addBook(Book book);
+
 }

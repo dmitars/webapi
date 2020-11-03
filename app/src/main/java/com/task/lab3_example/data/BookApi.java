@@ -13,15 +13,15 @@ public interface BookApi {
     @GET("books")
     Call<List<Book>> getBooks();
 
-    @POST("addBook")
+    @POST("books/addBook")
     Call<Book> addBook(@Body Book data);
 
-    @POST("updateBook")
+    @POST("books/updateBook")
     Call<Book> updateBook(@Body Book data);
 
-    @DELETE("removeBook")
+    @DELETE("books/removeBook")
     Call<Book> removeBook(@Query("id") long id);
 
-    @POST("orderBook")
+    @POST("books/orderBook")
     Call<Book> orderBook(@Body Book data);
 }

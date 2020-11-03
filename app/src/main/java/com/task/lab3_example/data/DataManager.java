@@ -39,7 +39,7 @@ public class DataManager extends WebManager{
             public void onResponse(@NonNull Call<Book> call, @NonNull Response<Book> response) {
                 //books.addAll(response.body());
                 if(response.body()!=null)
-                    System.out.println(response.body().toString());
+                    booksInterface.addBook(response.body());
             }
 
             @Override

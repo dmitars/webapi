@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class MainTab extends Fragment implements BooksInterface {
     private List<Book>books = new ArrayList<>();
     private GridView gridView;
     private DataManager dataManager;
+    private BookGridAdapter adapter;
 
     public MainTab(Context context){
         this.mainContext = (MainActivity)context;
@@ -50,11 +52,11 @@ public class MainTab extends Fragment implements BooksInterface {
         btnAdd.setOnClickListener(view->addBook());
 
         dataManager = DataManager.getInstance(this);
-        dataManager.loadBooks();
-        //books = getListData();
+     //   dataManager.loadBooks();
+        books = getListData();
 
         gridView = root.findViewById(R.id.gridView);
-        //showBooks(books);
+        showBooks(books);
         //gridView.setAdapter(new BookGridAdapter(mainContext, books));
 
         // When the user clicks on the GridItem
@@ -65,6 +67,23 @@ public class MainTab extends Fragment implements BooksInterface {
             DataManager.selectedBook = (Book) o;
             Intent intent = new Intent(mainContext, BookActivity.class);
             startActivity(intent);
+        });
+
+        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            //     Boolean isScrollStop=false;
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount){
+
+            }
         });
         return root;
     }
@@ -78,7 +97,15 @@ public class MainTab extends Fragment implements BooksInterface {
             }
         }
         this.books = books;
-        gridView.setAdapter(new BookGridAdapter(mainContext, books));
+        adapter = new BookGridAdapter(mainContext, books);
+        gridView.setAdapter(adapter);
+       // adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addBook(Book book) {
+        adapter.addBook(book);
+        adapter.notifyDataSetChanged();
     }
 
     private void updateBooks(){
@@ -124,7 +151,7 @@ public class MainTab extends Fragment implements BooksInterface {
                 Book book = new Book(title,author,description);
                 books.add(book);
                 dataManager.addBook(book);
-                updateBooks();
+                //updateBooks();
             } catch (Exception e) {
                 Toast.makeText(mainContext, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -133,7 +160,7 @@ public class MainTab extends Fragment implements BooksInterface {
 
     private List<Book>getListData(){
         List<Book>books = new ArrayList<>();
-        for(int i = 0;i<5;i++) {
+        for(int i = 0;i<15;i++) {
             try {
                 books.add(new Book("title"+i,"author"+i,"description"+i));
             } catch (Exception e) {

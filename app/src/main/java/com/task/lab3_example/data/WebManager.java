@@ -17,7 +17,7 @@ public abstract class WebManager {
         OkHttpClient client = UnsafeHttpClient.getUnsafeOkHttpClient();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://192.168.0.104:45455/api/")
+                .baseUrl("https://10.160.3.13:45455/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
