@@ -33,8 +33,8 @@ public class DataManager extends WebManager{
         return instance;
     }
 
-    public void addBook(Book book){
-        bookApi.addBook(book).enqueue(new Callback<Book>() {
+    public void addBook(Book book, String token){
+        bookApi.addBook(book,token).enqueue(new Callback<Book>() {
             @Override
             public void onResponse(@NonNull Call<Book> call, @NonNull Response<Book> response) {
                 //books.addAll(response.body());
@@ -67,18 +67,18 @@ public class DataManager extends WebManager{
         });
     }
 
-    public String updateBook(Book book){
-        bookApi.updateBook(book).enqueue(processor);
+    public String updateBook(Book book, String token){
+        bookApi.updateBook(book,token).enqueue(processor);
         return processor.getAnswer();
     }
 
-    public String removeBook(){
-        bookApi.removeBook(selectedBook.getId()).enqueue(processor);
+    public String removeBook(String token){
+        bookApi.removeBook(selectedBook.getId(),token).enqueue(processor);
         return processor.getAnswer();
     }
 
-    public String orderBook(){
-        bookApi.orderBook(selectedBook).enqueue(processor);
+    public String orderBook(String token){
+        bookApi.orderBook(selectedBook,token).enqueue(processor);
 
         return processor.getAnswer();
     }

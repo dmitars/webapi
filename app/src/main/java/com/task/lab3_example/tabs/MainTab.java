@@ -3,6 +3,7 @@ package com.task.lab3_example.tabs;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -30,6 +31,8 @@ import com.task.lab3_example.data.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MainTab extends Fragment implements BooksInterface {
     private final MainActivity mainContext;
@@ -149,8 +152,10 @@ public class MainTab extends Fragment implements BooksInterface {
 
             try {
                 Book book = new Book(title,author,description);
+                SharedPreferences preferences = mainContext.getSharedPreferences("token",MODE_PRIVATE);
+                String token = preferences.getString("token","");
                 books.add(book);
-                dataManager.addBook(book);
+                dataManager.addBook(book,token);
                 //updateBooks();
             } catch (Exception e) {
                 Toast.makeText(mainContext, e.getMessage(), Toast.LENGTH_SHORT).show();

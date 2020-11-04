@@ -1,6 +1,7 @@
 package com.task.lab3_example.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,8 @@ public class BookActivity extends AppCompatActivity {
 
     DataManager dataManager;
 
+    String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,9 @@ public class BookActivity extends AppCompatActivity {
         etAuthor.setText(DataManager.selectedBook.getAuthor());
         etDescription.setText(DataManager.selectedBook.getDescription());
 
+        SharedPreferences preferences = getSharedPreferences("token",MODE_PRIVATE);
+        token = preferences.getString("token","");
+
         dataManager = DataManager.getInstance(null);
     }
 
@@ -53,7 +59,7 @@ public class BookActivity extends AppCompatActivity {
         String bookDescription = etDescription.getText().toString();
         try {
             Book book = new Book(bookTitle, bookAuthor, bookDescription);
-            dataManager.updateBook(book);
+            dataManager.updateBook(book,token);
             loadBaseActivity();
         } catch (Exception e) {
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -61,12 +67,12 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void orderBook() {
-        dataManager.orderBook();
+        dataManager.orderBook(token);
         loadBaseActivity();
     }
 
     private void removeBook() {
-        dataManager.removeBook();
+        dataManager.removeBook(token);
         loadBaseActivity();
     }
 
