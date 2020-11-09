@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.task.lab3_example.R;
 import com.task.lab3_example.data.Book;
-import com.task.lab3_example.data.DataManager;
+import com.task.lab3_example.managers.DataManager;
 
 public class BookActivity extends AppCompatActivity {
     EditText etTitle;

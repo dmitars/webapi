@@ -17,10 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.task.lab3_example.R;
 import com.task.lab3_example.data.Payment;
-import com.task.lab3_example.data.PaymentManager;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.task.lab3_example.managers.PaymentManager;
 
 public class PaymentTab extends Fragment {
     private final Context mainContext;

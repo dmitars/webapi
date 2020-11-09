@@ -1,7 +1,6 @@
-package com.task.lab3_example.data;
+package com.task.lab3_example.managers;
 
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

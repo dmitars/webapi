@@ -1,4 +1,6 @@
-package com.task.lab3_example.data;
+package com.task.lab3_example.managers;
+
+import com.task.lab3_example.data.Book;
 
 import retrofit2.Call;
 import retrofit2.Callback;

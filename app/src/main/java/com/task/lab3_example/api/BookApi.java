@@ -1,4 +1,6 @@
-package com.task.lab3_example.data;
+package com.task.lab3_example.api;
+
+import com.task.lab3_example.data.Book;
 
 import java.util.List;
 

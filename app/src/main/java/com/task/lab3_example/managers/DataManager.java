@@ -1,10 +1,11 @@
-package com.task.lab3_example.data;
-
-import android.provider.ContactsContract;
+package com.task.lab3_example.managers;
 
 import androidx.annotation.NonNull;
 
-import java.net.InetAddress;
+import com.task.lab3_example.api.BookApi;
+import com.task.lab3_example.data.Book;
+import com.task.lab3_example.activity.BooksInterface;
+
 import java.util.ArrayList;
 import java.util.List;
 

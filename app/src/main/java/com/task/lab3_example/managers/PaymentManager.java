@@ -1,8 +1,8 @@
-package com.task.lab3_example.data;
+package com.task.lab3_example.managers;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import com.task.lab3_example.api.PaymentApi;
+import com.task.lab3_example.data.Payment;
 
 import retrofit2.Call;
 import retrofit2.Callback;

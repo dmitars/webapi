@@ -1,4 +1,6 @@
-package com.task.lab3_example.data;
+package com.task.lab3_example.api;
+
+import com.task.lab3_example.data.Payment;
 
 import retrofit2.Call;
 import retrofit2.http.POST;
