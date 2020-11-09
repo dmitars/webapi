@@ -24,6 +24,7 @@ public class BookActivity extends AppCompatActivity {
 
     DataManager dataManager;
 
+
     String token;
 
     @Override
@@ -43,6 +44,7 @@ public class BookActivity extends AppCompatActivity {
         etAuthor = findViewById(R.id.etAuthor);
         etDescription = findViewById(R.id.etDescription);
 
+
         etTitle.setText(DataManager.selectedBook.getTitle());
         etAuthor.setText(DataManager.selectedBook.getAuthor());
         etDescription.setText(DataManager.selectedBook.getDescription());
@@ -57,9 +59,13 @@ public class BookActivity extends AppCompatActivity {
         String bookTitle = etTitle.getText().toString();
         String bookAuthor = etAuthor.getText().toString();
         String bookDescription = etDescription.getText().toString();
+
+        Book currentBook = DataManager.selectedBook;
+        currentBook.setAuthor(bookAuthor);
+        currentBook.setTitle(bookTitle);
+        currentBook.setDescription(bookDescription);
         try {
-            Book book = new Book(bookTitle, bookAuthor, bookDescription);
-            dataManager.updateBook(book,token);
+            dataManager.updateBook(currentBook,token);
             loadBaseActivity();
         } catch (Exception e) {
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
