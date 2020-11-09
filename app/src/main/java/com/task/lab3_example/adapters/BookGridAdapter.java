@@ -50,6 +50,7 @@ public class BookGridAdapter extends BaseAdapter {
 
     public void removeBook(Book book){
         books.remove(book);
+        checkBooksLength();
     }
 
     public void updateBook(Book book){

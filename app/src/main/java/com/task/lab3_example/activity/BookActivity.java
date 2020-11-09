@@ -1,6 +1,5 @@
 package com.task.lab3_example.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -66,7 +65,7 @@ public class BookActivity extends AppCompatActivity {
         currentBook.setDescription(bookDescription);
         try {
             dataManager.updateBook(currentBook,token);
-            loadBaseActivity();
+            finish();
         } catch (Exception e) {
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -74,16 +73,11 @@ public class BookActivity extends AppCompatActivity {
 
     private void orderBook() {
         dataManager.orderBook(token);
-        loadBaseActivity();
+        finish();
     }
 
     private void removeBook() {
         dataManager.removeBook(token);
-        loadBaseActivity();
-    }
-
-    private void loadBaseActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 }

@@ -90,7 +90,7 @@ public class MainTab extends Fragment implements BooksInterface {
     public void showBooks(List<Book>books){
         adapter = new BookGridAdapter(mainContext, books);
         gridView.setAdapter(adapter);
-       // adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
