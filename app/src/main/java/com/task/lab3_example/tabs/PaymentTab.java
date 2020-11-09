@@ -65,7 +65,7 @@ public class PaymentTab extends Fragment {
         String dateEnd = etEndDate.getText().toString();
         try{
             Payment payment = new Payment(dateStart,dateEnd,spinner.getSelectedItem().toString());
-            String answer = paymentManager.sentPayment(dateStart,dateEnd,spinner.getSelectedItem().toString());
+            String answer = paymentManager.sentPayment(payment);
             SharedPreferences sharedPreferences = mainContext.getSharedPreferences("token",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("token",answer);
