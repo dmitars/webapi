@@ -70,10 +70,9 @@ public class PaymentTab extends Fragment {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("token",answer);
             editor.apply();
-            Toast.makeText(mainContext,answer,Toast.LENGTH_SHORT).show();
-            Toast.makeText(mainContext,"date is correct!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainContext,answer+"\ndate is correct!",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(mainContext,"Некорректная дата (dd.mm.yyyy)",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainContext,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
 }
