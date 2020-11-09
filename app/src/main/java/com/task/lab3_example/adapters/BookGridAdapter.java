@@ -24,11 +24,37 @@ public class BookGridAdapter extends BaseAdapter {
     public BookGridAdapter(Context context, List<Book> books){
         this.context = context;
         this.books = books;
+        checkBooksLength();
         layoutInflater = LayoutInflater.from(context);
     }
 
-    public void addBook(Book book){
+    private void putBook(Book book){
         books.add(book);
+        checkBooksLength();
+    }
+
+    private void checkBooksLength(){
+        if(books.size()%2!=0) {
+            try {
+                books.add(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void addBook(Book book){
+        books.remove(null);
+        putBook(book);
+    }
+
+    public void removeBook(Book book){
+        books.remove(book);
+    }
+
+    public void updateBook(Book book){
+        books.remove(book);
+        putBook(book);
     }
 
     @Override

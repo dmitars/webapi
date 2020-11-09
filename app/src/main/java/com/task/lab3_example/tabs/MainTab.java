@@ -34,7 +34,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class MainTab extends Fragment implements BooksInterface {
     private final MainActivity mainContext;
     Button btnAdd;
-    private List<Book>books = new ArrayList<>();
     private GridView gridView;
     private DataManager dataManager;
     private BookGridAdapter adapter;
@@ -49,14 +48,14 @@ public class MainTab extends Fragment implements BooksInterface {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         btnAdd = root.findViewById(R.id.btnAdd);
 
-        btnAdd.setOnClickListener(view->addBook());
+        btnAdd.setOnClickListener(view-> startAddBookDialog());
 
         dataManager = DataManager.getInstance(this);
-     //   dataManager.loadBooks();
-        books = getListData();
+        dataManager.loadBooks();
+        //books = getListData();
 
         gridView = root.findViewById(R.id.gridView);
-        showBooks(books);
+       // showBooks(books);
         //gridView.setAdapter(new BookGridAdapter(mainContext, books));
 
         // When the user clicks on the GridItem
@@ -89,14 +88,6 @@ public class MainTab extends Fragment implements BooksInterface {
     }
 
     public void showBooks(List<Book>books){
-        if(books.size()%2!=0) {
-            try {
-                books.add(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        this.books = books;
         adapter = new BookGridAdapter(mainContext, books);
         gridView.setAdapter(adapter);
        // adapter.notifyDataSetChanged();
@@ -108,12 +99,20 @@ public class MainTab extends Fragment implements BooksInterface {
         adapter.notifyDataSetChanged();
     }
 
-    private void updateBooks(){
-        dataManager.loadBooks();
+    @Override
+    public void removeBook(Book book) {
+        adapter.removeBook(book);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updateBook(Book book){
+        adapter.updateBook(book);
+        adapter.notifyDataSetChanged();
     }
 
 
-    private void addBook(){
+    private void startAddBookDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(mainContext);
         dialog.setTitle("Добавить");
         dialog.setMessage("Введите параметры новой книги");
@@ -151,7 +150,7 @@ public class MainTab extends Fragment implements BooksInterface {
                 Book book = new Book(title,author,description);
                 SharedPreferences preferences = mainContext.getSharedPreferences("token",MODE_PRIVATE);
                 String token = preferences.getString("token","");
-                books.add(book);
+                //books.add(book);
                 dataManager.addBook(book,token);
                 //updateBooks();
             } catch (Exception e) {

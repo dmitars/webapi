@@ -73,7 +73,7 @@ public class PaymentTab extends Fragment {
             Toast.makeText(mainContext,answer,Toast.LENGTH_SHORT).show();
             Toast.makeText(mainContext,"date is correct!",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(mainContext,"Некорректная дата (dd-mm-yyyy)",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainContext,"Некорректная дата (dd.mm.yyyy)",Toast.LENGTH_SHORT).show();
         }
     }
 }

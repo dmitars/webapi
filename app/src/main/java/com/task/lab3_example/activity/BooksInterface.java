@@ -9,4 +9,8 @@ public interface BooksInterface {
 
     void addBook(Book book);
 
+    void removeBook(Book book);
+
+    void updateBook(Book book);
+
 }
