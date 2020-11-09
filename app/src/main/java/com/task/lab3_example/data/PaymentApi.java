@@ -6,7 +6,5 @@ import retrofit2.http.Query;
 
 public interface PaymentApi {
     @POST
-    Call<String>sentPayment(@Query("startDate") String startDate,
-                            @Query("endDate") String endDate,
-                            @Query("function") String functionName);
+    Call<String>sentPayment(@Query("payment") Payment payment);
 }

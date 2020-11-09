@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.task.lab3_example.R;
+import com.task.lab3_example.data.Payment;
 import com.task.lab3_example.data.PaymentManager;
 
 import java.text.SimpleDateFormat;
@@ -66,11 +67,7 @@ public class PaymentTab extends Fragment {
         String dateStart = etStartDate.getText().toString();
         String dateEnd = etEndDate.getText().toString();
         try{
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
-            Date startDate = dateFormat.parse(dateStart);
-            Date endDate = dateFormat.parse(dateEnd);
-            if(endDate.before(startDate) && endDate.getTime()!=startDate.getTime())
-                throw new Exception("Некорректный промежуток времени!");
+            Payment payment = new Payment(dateStart,dateEnd,spinner.getSelectedItem().toString());
             String answer = paymentManager.sentPayment(dateStart,dateEnd,spinner.getSelectedItem().toString());
             SharedPreferences sharedPreferences = mainContext.getSharedPreferences("token",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();

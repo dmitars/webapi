@@ -25,9 +25,9 @@ public class PaymentManager extends WebManager {
         return instance;
     }
 
-    public String sentPayment(String startDate, String endDate, String functionName) {
+    public String sentPayment(Payment payment) {
 
-        paymentApi.sentPayment(startDate, endDate, functionName).enqueue(new Callback<String>() {
+        paymentApi.sentPayment(payment).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 //Strings.addAll(response.body());
