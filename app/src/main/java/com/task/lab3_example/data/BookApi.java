@@ -14,14 +14,14 @@ public interface BookApi {
     Call<List<Book>> getBooks();
 
     @POST("books/addBook")
-    Call<Book> addBook(@Body Book data, String token);
+    Call<Book> addBook(@Body Book data, @Query("token") String token);
 
     @POST("books/updateBook")
-    Call<Book> updateBook(@Body Book data, String token);
+    Call<Book> updateBook(@Body Book data, @Query("token") String token);
 
     @DELETE("books/removeBook")
-    Call<Book> removeBook(@Query("id") long id, String token);
+    Call<Book> removeBook(@Query("id") long id, @Query("token") String token);
 
     @POST("books/orderBook")
-    Call<Book> orderBook(@Body Book data, String token);
+    Call<Book> orderBook(@Body Book data, @Query("token") String token);
 }
