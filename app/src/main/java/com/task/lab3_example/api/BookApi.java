@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface BookApi {
@@ -18,7 +19,7 @@ public interface BookApi {
     @POST("books/addBook")
     Call<Book> addBook(@Body Book data, @Query("token") String token);
 
-    @POST("books/updateBook")
+    @PUT("books/updateBook")
     Call<Book> updateBook(@Body Book data, @Query("token") String token);
 
     @DELETE("books/removeBook")
