@@ -69,7 +69,7 @@ public class MainTab extends Fragment implements BooksInterface {
         });
 
         gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            //     Boolean isScrollStop=false;
+            //     Void isScrollStop=false;
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
 

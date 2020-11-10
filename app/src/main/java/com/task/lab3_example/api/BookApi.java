@@ -26,5 +26,5 @@ public interface BookApi {
     Call<Book> removeBook(@Query("id") long id, @Query("token") String token);
 
     @POST("books/orderBook")
-    Call<Boolean> orderBook(@Body Book data, @Query("token") String token);
+    Call<Void> orderBook(@Body Book data, @Query("token") String token);
 }

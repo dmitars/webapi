@@ -39,13 +39,11 @@ public class DataManager extends WebManager{
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.addBook(response.body());
-                else
-                    booksInterface.showError();
             }
 
             @Override
             public void onFailure(Call<Book> call, Throwable t) {
-
+                booksInterface.showError();
             }
         });
     }
@@ -75,13 +73,11 @@ public class DataManager extends WebManager{
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.updateBook(response.body());
-                else
-                    booksInterface.showError();
             }
 
             @Override
             public void onFailure(Call<Book> call, Throwable t) {
-
+                booksInterface.showError();
             }
         });
     }
@@ -93,33 +89,26 @@ public class DataManager extends WebManager{
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.removeBook(response.body());
-                else{
-                    booksInterface.showError();
-                }
             }
 
             @Override
             public void onFailure(Call<Book> call, Throwable t) {
-
+                booksInterface.showError();
             }
         });
     }
 
     public void orderBook(String token){
-        bookApi.orderBook(selectedBook,token).enqueue(new Callback<Boolean>() {
+        bookApi.orderBook(selectedBook,token).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 //books.addAll(response.body());
-                if(response.body()) {
                     loadBooks();
-                }else{
-                    booksInterface.showError();
-                }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-
+            public void onFailure(Call<Void> call, Throwable t) {
+                booksInterface.showError();
             }
         });
 
