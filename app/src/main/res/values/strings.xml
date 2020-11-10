@@ -11,6 +11,7 @@
     <string name="title">Название</string>
     <string name="author">Автор</string>
     <string name="description">Описание</string>
+    <string name="functionNotPaidException">Ошибка; вы еще не оплатили данную функцию</string>
     <string name="paymentException">Ошибка оплаты; попробуйте позже</string>
     <string name="startDate">Оплатить с (dd.mm.yyyy)</string>
     <string name="endDate">Оплатить по (dd.mm.yyyy)</string>

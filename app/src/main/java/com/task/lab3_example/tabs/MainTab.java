@@ -111,6 +111,11 @@ public class MainTab extends Fragment implements BooksInterface {
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showError() {
+        Toast.makeText(mainContext,getString(R.string.functionNotPaidException),Toast.LENGTH_SHORT).show();
+    }
+
 
     private void startAddBookDialog(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(mainContext);

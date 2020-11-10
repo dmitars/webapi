@@ -13,4 +13,6 @@ public interface BooksInterface {
 
     void updateBook(Book book);
 
+    void showError();
+
 }

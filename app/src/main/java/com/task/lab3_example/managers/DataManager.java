@@ -16,7 +16,6 @@ import retrofit2.Response;
 public class DataManager extends WebManager{
     public static Book selectedBook;
     BookApi bookApi;
-    BookCallProcessor processor;
     BooksInterface booksInterface;
 
     private static DataManager instance;
@@ -25,7 +24,6 @@ public class DataManager extends WebManager{
         super();
         this.booksInterface = booksInterface;
         bookApi = retrofit.create(BookApi.class);
-        processor = new BookCallProcessor();
     }
 
     public static DataManager getInstance(BooksInterface booksInterface){
@@ -41,6 +39,8 @@ public class DataManager extends WebManager{
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.addBook(response.body());
+                else
+                    booksInterface.showError();
             }
 
             @Override
@@ -68,13 +68,15 @@ public class DataManager extends WebManager{
         });
     }
 
-    public String updateBook(Book book, String token){
+    public void updateBook(Book book, String token){
         bookApi.updateBook(book,token).enqueue(new Callback<Book>() {
             @Override
             public void onResponse(@NonNull Call<Book> call, @NonNull Response<Book> response) {
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.updateBook(response.body());
+                else
+                    booksInterface.showError();
             }
 
             @Override
@@ -82,16 +84,18 @@ public class DataManager extends WebManager{
 
             }
         });
-        return processor.getAnswer();
     }
 
-    public String removeBook(String token){
+    public void removeBook(String token){
         bookApi.removeBook(selectedBook.getId(),token).enqueue(new Callback<Book>() {
             @Override
             public void onResponse(@NonNull Call<Book> call, @NonNull Response<Book> response) {
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.removeBook(response.body());
+                else{
+                    booksInterface.showError();
+                }
             }
 
             @Override
@@ -99,12 +103,26 @@ public class DataManager extends WebManager{
 
             }
         });
-        return processor.getAnswer();
     }
 
-    public String orderBook(String token){
-        bookApi.orderBook(selectedBook,token).enqueue(processor);
-        loadBooks();
-        return processor.getAnswer();
+    public void orderBook(String token){
+        bookApi.orderBook(selectedBook,token).enqueue(new Callback<Book>() {
+            @Override
+            public void onResponse(@NonNull Call<Book> call, @NonNull Response<Book> response) {
+                //books.addAll(response.body());
+                if(response.body()!=null) {
+                    booksInterface.removeBook(response.body());
+                    loadBooks();
+                }else{
+                    booksInterface.showError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Book> call, Throwable t) {
+
+            }
+        });
+
     }
 }
