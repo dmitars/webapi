@@ -106,12 +106,11 @@ public class DataManager extends WebManager{
     }
 
     public void orderBook(String token){
-        bookApi.orderBook(selectedBook,token).enqueue(new Callback<Book>() {
+        bookApi.orderBook(selectedBook,token).enqueue(new Callback<Boolean>() {
             @Override
-            public void onResponse(@NonNull Call<Book> call, @NonNull Response<Book> response) {
+            public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                 //books.addAll(response.body());
-                if(response.body()!=null) {
-                    booksInterface.removeBook(response.body());
+                if(response.body()) {
                     loadBooks();
                 }else{
                     booksInterface.showError();
@@ -119,7 +118,7 @@ public class DataManager extends WebManager{
             }
 
             @Override
-            public void onFailure(Call<Book> call, Throwable t) {
+            public void onFailure(Call<Boolean> call, Throwable t) {
 
             }
         });
