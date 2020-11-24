@@ -153,8 +153,8 @@ public class MainTab extends Fragment implements BooksInterface {
 
             try {
                 Book book = new Book(title,author,description);
-                SharedPreferences preferences = mainContext.getSharedPreferences("token",MODE_PRIVATE);
-                String token = preferences.getString("token","");
+                SharedPreferences preferences = mainContext.getSharedPreferences("tokens",MODE_PRIVATE);
+                String token = preferences.getString("AddBook","");
                 //books.add(book);
                 dataManager.addBook(book,token);
                 //updateBooks();

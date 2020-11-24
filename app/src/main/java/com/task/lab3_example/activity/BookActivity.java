@@ -22,9 +22,7 @@ public class BookActivity extends AppCompatActivity {
     Button btnRemove;
 
     DataManager dataManager;
-
-
-    String token;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +46,7 @@ public class BookActivity extends AppCompatActivity {
         etAuthor.setText(DataManager.selectedBook.getAuthor());
         etDescription.setText(DataManager.selectedBook.getDescription());
 
-        SharedPreferences preferences = getSharedPreferences("token",MODE_PRIVATE);
-        token = preferences.getString("token","");
+        sharedPreferences = getSharedPreferences("tokens",MODE_PRIVATE);
 
         dataManager = DataManager.getInstance(null);
     }
@@ -64,6 +61,7 @@ public class BookActivity extends AppCompatActivity {
         currentBook.setTitle(bookTitle);
         currentBook.setDescription(bookDescription);
         try {
+            String token = sharedPreferences.getString("UpdateBook","");
             dataManager.updateBook(currentBook,token);
             finish();
         } catch (Exception e) {
@@ -72,11 +70,13 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void orderBook() {
+        String token = sharedPreferences.getString("OrderBook","");
         dataManager.orderBook(token);
         finish();
     }
 
     private void removeBook() {
+        String token = sharedPreferences.getString("DeleteBook","");
         dataManager.removeBook(token);
         finish();
     }

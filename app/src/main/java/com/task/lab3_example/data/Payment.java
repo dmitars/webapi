@@ -14,6 +14,10 @@ public class Payment {
     @SerializedName("endDate")
     String endDate;
 
+    public String getFunction() {
+        return function;
+    }
+
     @SerializedName("function")
     String function;
 

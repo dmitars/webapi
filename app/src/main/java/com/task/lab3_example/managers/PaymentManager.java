@@ -3,6 +3,7 @@ package com.task.lab3_example.managers;
 
 import com.task.lab3_example.api.PaymentApi;
 import com.task.lab3_example.data.Payment;
+import com.task.lab3_example.tabs.PaymentTab;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,16 +13,18 @@ public class PaymentManager extends WebManager {
     PaymentApi paymentApi;
     String answer;
     private static PaymentManager instance;
+    PaymentTab paymentTab;
     //private Context mainContext;
 
-    private PaymentManager() {
+    private PaymentManager(PaymentTab paymentTab) {
         super();
+        this.paymentTab = paymentTab;
         paymentApi = retrofit.create(PaymentApi.class);
     }
 
-    public static PaymentManager getInstance() {
+    public static PaymentManager getInstance(PaymentTab paymentTab) {
         if (instance == null)
-            instance = new PaymentManager();
+            instance = new PaymentManager(paymentTab);
         return instance;
     }
 
@@ -32,6 +35,7 @@ public class PaymentManager extends WebManager {
             public void onResponse(Call<String> call, Response<String> response) {
                 //Strings.addAll(response.body());
                 answer = response.body();
+                paymentTab.setToken(payment.getFunction(),response.body());
             }
 
             @Override

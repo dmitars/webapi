@@ -54,7 +54,7 @@ public class PaymentTab extends Fragment {
 
         btnPay.setOnClickListener(view->pay());
 
-        paymentManager = PaymentManager.getInstance();
+        paymentManager = PaymentManager.getInstance(this);
 
         return root;
     }
@@ -64,15 +64,32 @@ public class PaymentTab extends Fragment {
         String dateStart = etStartDate.getText().toString();
         String dateEnd = etEndDate.getText().toString();
         try{
-            Payment payment = new Payment(dateStart,dateEnd,spinner.getSelectedItem().toString());
-            String answer = paymentManager.sentPayment(payment);
-            SharedPreferences sharedPreferences = mainContext.getSharedPreferences("token",Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("token",answer);
-            editor.apply();
-            Toast.makeText(mainContext,answer+"\ndate is correct!",Toast.LENGTH_SHORT).show();
+            String functionName="";
+            switch (spinner.getSelectedItemPosition()){
+                case 0:
+                    functionName = "OrderBook";
+                    break;
+                case 1:
+                    functionName = "AddBook";
+                    break;
+                case 2:
+                    functionName = "UpdateBook";
+                    break;
+                case 3:
+                    functionName = "DeleteBook";
+                    break;
+            }
+            Payment payment = new Payment(dateStart,dateEnd,functionName);
+            paymentManager.sentPayment(payment);
         } catch (Exception e) {
             Toast.makeText(mainContext,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void setToken(String function,String token){
+        SharedPreferences sharedPreferences = mainContext.getSharedPreferences("tokens",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(function,token);
+        editor.apply();
     }
 }
