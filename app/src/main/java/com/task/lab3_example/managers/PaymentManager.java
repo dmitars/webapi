@@ -1,6 +1,8 @@
 package com.task.lab3_example.managers;
 
 
+import android.widget.Toast;
+
 import com.task.lab3_example.api.PaymentApi;
 import com.task.lab3_example.data.Payment;
 import com.task.lab3_example.tabs.PaymentTab;
@@ -35,6 +37,7 @@ public class PaymentManager extends WebManager {
             public void onResponse(Call<String> call, Response<String> response) {
                 //Strings.addAll(response.body());
                 answer = response.body();
+                Toast.makeText(paymentTab.getContext(),"Payment completed successful",Toast.LENGTH_LONG).show();
                 paymentTab.setToken(payment.getFunction(),response.body());
             }
 
