@@ -113,7 +113,7 @@ public class MainTab extends Fragment implements BooksInterface {
 
     @Override
     public void showError() {
-        Toast.makeText(mainContext,getString(R.string.functionNotPaidException),Toast.LENGTH_SHORT).show();
+        Toast.makeText(mainContext,getString(R.string.functionNotPaidException),Toast.LENGTH_LONG).show();
     }
 
 

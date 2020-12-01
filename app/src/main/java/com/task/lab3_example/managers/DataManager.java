@@ -39,6 +39,8 @@ public class DataManager extends WebManager{
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.addBook(response.body());
+                else
+                    booksInterface.showError();
             }
 
             @Override
@@ -73,6 +75,8 @@ public class DataManager extends WebManager{
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.updateBook(response.body());
+                else
+                    booksInterface.showError();
             }
 
             @Override
@@ -89,6 +93,8 @@ public class DataManager extends WebManager{
                 //books.addAll(response.body());
                 if(response.body()!=null)
                     booksInterface.removeBook(response.body());
+                else
+                    booksInterface.showError();
             }
 
             @Override
@@ -103,6 +109,9 @@ public class DataManager extends WebManager{
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 //books.addAll(response.body());
+                if(response.body()!=null)
+                    booksInterface.showError();
+                else
                     loadBooks();
             }
 

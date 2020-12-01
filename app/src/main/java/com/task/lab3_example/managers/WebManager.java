@@ -16,7 +16,7 @@ public abstract class WebManager {
         OkHttpClient client = UnsafeHttpClient.getUnsafeOkHttpClient();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://10.160.54.8:45455/api/")
+                .baseUrl("https://biblio-api-ds.herokuapp.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
